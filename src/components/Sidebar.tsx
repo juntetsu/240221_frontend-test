@@ -1,7 +1,8 @@
 import React from "react";
 import "./Sidebar.css";
+import { noteType } from "../App";
 
-const Sidebar = () => {
+const Sidebar = ({ notes }: { notes: noteType[] }) => {
   return (
     <aside className="sidebar">
       <div className="sidebar__inner">
@@ -10,6 +11,15 @@ const Sidebar = () => {
           ServiceName
         </h1>
         <ul className="sidebar__list">
+          {notes.map((note) => (
+            <li className="sidebar__item" key={note.id}>
+              <h2 className="sidebar__title">{note.title}</h2>
+              <button className="sidebar__item-delete-btn">
+                <img src="../public/delete.svg" alt="" />
+              </button>
+            </li>
+          ))}
+
           <li className="sidebar__item">
             <h2 className="sidebar__title">こころ</h2>
             <button className="sidebar__item-delete-btn">
