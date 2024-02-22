@@ -6,9 +6,14 @@ import { useState, useEffect } from "react";
 type SidebarProps = {
   notes: NoteType[];
   setSelectedNoteId: (id: number) => void;
+  deleteNote: (id: number) => void;
 };
 
-const Sidebar: React.FC<SidebarProps> = ({ notes, setSelectedNoteId }) => {
+const Sidebar: React.FC<SidebarProps> = ({
+  notes,
+  setSelectedNoteId,
+  deleteNote,
+}) => {
   const [selectedNote, setSelectedNote] = useState<number | null>(null);
   const [editMode, setEditMode] = useState<boolean>(false);
 
@@ -30,6 +35,12 @@ const Sidebar: React.FC<SidebarProps> = ({ notes, setSelectedNoteId }) => {
     setEditMode((prev) => !prev);
   };
 
+  // 削除
+  const handleDelete = (e: React.MouseEvent<HTMLButtonElement>, id: number) => {
+    e.stopPropagation(); // イベントの伝播を停止
+    deleteNote(id);
+  };
+
   return (
     <aside className="sidebar">
       <div className="sidebar__inner">
@@ -48,7 +59,10 @@ const Sidebar: React.FC<SidebarProps> = ({ notes, setSelectedNoteId }) => {
             >
               <h2 className="sidebar__title">{note.title}</h2>
               {editMode && (
-                <button className="sidebar__item-delete-btn">
+                <button
+                  className="sidebar__item-delete-btn"
+                  onClick={(e) => handleDelete(e, note.id)}
+                >
                   <img src="../public/delete.svg" alt="" />
                 </button>
               )}

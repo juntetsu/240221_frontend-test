@@ -35,9 +35,23 @@ function App() {
     getNotes();
   }, []);
 
+  const deleteNote = async (id: number) => {
+    // サーバーから記事を削除するAPIを呼び出す場合
+    await axios.delete(`http://localhost:3000/content/${id}`);
+
+    // 削除後の記事リストを更新
+    const updatedNotes = notes.filter((note) => note.id !== id);
+    setNotes(updatedNotes);
+
+    // 削除された記事が選択されていた場合、選択を解除または更新
+    if (selectedNoteId === id) {
+      setSelectedNoteId(null);
+    }
+  };
+
   return (
     <div className="container">
-      <Sidebar notes={notes} setSelectedNoteId={setSelectedNoteId} />
+      <Sidebar notes={notes} setSelectedNoteId={setSelectedNoteId} deleteNote={deleteNote} />
       <Main selectedNoteId={selectedNoteId} />
     </div>
   );
