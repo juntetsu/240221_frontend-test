@@ -7,12 +7,14 @@ type SidebarProps = {
   notes: NoteType[];
   setSelectedNoteId: (id: number) => void;
   deleteNote: (id: number) => void;
+  addNote: () => void;
 };
 
 const Sidebar: React.FC<SidebarProps> = ({
   notes,
   setSelectedNoteId,
   deleteNote,
+  addNote,
 }) => {
   const [selectedNote, setSelectedNote] = useState<number | null>(null);
   const [editMode, setEditMode] = useState<boolean>(false);
@@ -26,6 +28,7 @@ const Sidebar: React.FC<SidebarProps> = ({
 
   // タイトルをクリック時のハイライト処理
   const handleClick = (id: number) => {
+    console.log(id);
     setSelectedNote(id);
     setSelectedNoteId(id);
   };
@@ -72,7 +75,10 @@ const Sidebar: React.FC<SidebarProps> = ({
       </div>
       <div className="sidebar__btn-list">
         {editMode && (
-          <button className="sidebar__btn btn add sidebar__add-btn">
+          <button
+            className="sidebar__btn btn add sidebar__add-btn"
+            onClick={addNote}
+          >
             <img src="../public/+.svg" alt="" />
             New Page
           </button>

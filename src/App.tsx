@@ -3,6 +3,7 @@ import Sidebar from "./components/Sidebar";
 import Main from "./components/Main";
 import { useEffect, useState } from "react";
 import axios from "axios";
+// import { v4 as uuidv4 } from "uuid";
 
 export type NoteType = {
   id: number;
@@ -49,9 +50,32 @@ function App() {
     }
   };
 
+  const addNote = async () => {
+    const newNote = {
+      title: "タイトル",
+      body: "コンテンツ",
+      createdAt: new Date().toISOString(),
+      updatedAt: new Date().toISOString(),
+    };
+
+    // 新しいnoteを追加
+    const res = await axios.post("http://localhost:3000/content", newNote);
+    const addedNote = res.data;
+
+    setNotes((prevNotes) => [addedNote, ...prevNotes]);
+
+    // 新しく作成されたノートを選択状態に（ハイライト）
+    setSelectedNoteId(addedNote.id);
+  };
+
   return (
     <div className="container">
-      <Sidebar notes={notes} setSelectedNoteId={setSelectedNoteId} deleteNote={deleteNote} />
+      <Sidebar
+        notes={notes}
+        setSelectedNoteId={setSelectedNoteId}
+        deleteNote={deleteNote}
+        addNote={addNote}
+      />
       <Main selectedNoteId={selectedNoteId} />
     </div>
   );
