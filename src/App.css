@@ -29,7 +29,7 @@ button {
   outline: none;
   font: inherit;
   color: inherit;
-  background: none
+  background: none;
 }
 
 ul {
@@ -52,6 +52,7 @@ img {
   justify-content: center;
   align-items: center;
   font-size: 10px;
+  line-height: 1;
   font-weight: 700;
   flex-shrink: 0;
 }
@@ -61,12 +62,19 @@ img {
   height: 18px;
 }
 
-.btn.new {
-
+.btn.add {
+  border: 2px solid var(--c-blue);
+  color: var(--c-blue);
+  background: var(--c-white);
 }
 
 .btn.done {
+}
 
+.btn.add img,
+.btn.done img {
+  width: 24px;
+  height: 24px;
 }
 
 .container {

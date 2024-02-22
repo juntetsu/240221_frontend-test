@@ -4,7 +4,7 @@ import Main from "./components/Main";
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-export type noteType = {
+export type NoteType = {
   id: number;
   title: string;
   body: string;
@@ -13,12 +13,17 @@ export type noteType = {
 };
 
 function App() {
-  const [notes, setNotes] = useState<noteType[]>([]);
+  const [notes, setNotes] = useState<NoteType[]>([]);
 
   useEffect(() => {
     const getNotes = async () => {
       const res = await axios.get("http://localhost:3000/content");
-      setNotes(res.data);
+      // 取得したノートをupdatedAtで降順にソート
+      const sortedNotes = res.data.sort(
+        (a: NoteType, b: NoteType) =>
+          new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime()
+      );
+      setNotes(sortedNotes);
     };
     getNotes();
   }, []);
