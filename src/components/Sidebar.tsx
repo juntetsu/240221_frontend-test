@@ -3,7 +3,12 @@ import "./Sidebar.css";
 import { NoteType } from "../App";
 import { useState, useEffect } from "react";
 
-const Sidebar = ({ notes }: { notes: NoteType[] }) => {
+type SidebarProps = {
+  notes: NoteType[];
+  setSelectedNoteId: (id: number) => void;
+};
+
+const Sidebar: React.FC<SidebarProps> = ({ notes, setSelectedNoteId }) => {
   const [selectedNote, setSelectedNote] = useState<number | null>(null);
   const [editMode, setEditMode] = useState<boolean>(false);
 
@@ -17,6 +22,7 @@ const Sidebar = ({ notes }: { notes: NoteType[] }) => {
   // タイトルをクリック時のハイライト処理
   const handleClick = (id: number) => {
     setSelectedNote(id);
+    setSelectedNoteId(id);
   };
 
   // 編集モードの切り替え

@@ -43,6 +43,10 @@
   border-radius: 8px;
 }
 
+.article__text {
+  white-space: pre-wrap;
+}
+
 .footer {
   height: 60px;
   display: flex;

@@ -14,6 +14,7 @@ export type NoteType = {
 
 function App() {
   const [notes, setNotes] = useState<NoteType[]>([]);
+  const [selectedNoteId, setSelectedNoteId] = useState<number | null>(null);
 
   useEffect(() => {
     const getNotes = async () => {
@@ -24,14 +25,20 @@ function App() {
           new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime()
       );
       setNotes(sortedNotes);
+
+      // 初期状態では最新のノートを選択状態に
+      if (sortedNotes.length > 0) {
+        setSelectedNoteId(sortedNotes[0].id);
+      }
     };
+
     getNotes();
   }, []);
 
   return (
     <div className="container">
-      <Sidebar notes={notes} />
-      <Main />
+      <Sidebar notes={notes} setSelectedNoteId={setSelectedNoteId} />
+      <Main selectedNoteId={selectedNoteId} />
     </div>
   );
 }
