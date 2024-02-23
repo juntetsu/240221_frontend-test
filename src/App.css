@@ -8,6 +8,7 @@
   --c-black50: #4d4d4d;
   --bg-light-blue: #f5f8fa;
   --bg-dark-blue: #c8e6fa;
+  --font-jp: "Noto Sans JP", sans-serif;
 }
 
 * {
@@ -30,6 +31,10 @@ button {
   font: inherit;
   color: inherit;
   background: none;
+}
+
+input,textarea {
+  -webkit-appearance: none;
 }
 
 ul {
@@ -75,6 +80,48 @@ img {
 .btn.done img {
   width: 24px;
   height: 24px;
+}
+
+.save-btn,
+.cancel-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 4px;
+  font-size: 10px;
+  color: var(--c-white);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.save-btn {
+  background: var(--c-blue);
+}
+.cancel-btn {
+  background: var(--c-black30);
+}
+.cancel-btn span {
+  width: 24px;
+  height: 24px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    width: 20px;
+    height: 2px;
+    background: var(--c-white);
+  }
+  &::before {
+    transform: rotate(45deg);
+  }
+  &::after {
+    transform: rotate(-45deg);
+  }
 }
 
 .container {

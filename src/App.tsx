@@ -68,6 +68,23 @@ function App() {
     setSelectedNoteId(addedNote.id);
   };
 
+  // ノートの編集
+  const updateNote = async (id: number, updatedNote: NoteType) => {
+    await axios.put(`http://localhost:3000/content/${id}`, updatedNote);
+
+    const updatedNotes = notes.map((note) => {
+      if (note.id === id) {
+        return updatedNote;
+      }
+      return note;
+    });
+    setNotes(updatedNotes);
+
+    if (selectedNoteId === id) {
+      setSelectedNoteId(updatedNote.id);
+    }
+  };
+
   return (
     <div className="container">
       <Sidebar
@@ -76,7 +93,7 @@ function App() {
         deleteNote={deleteNote}
         addNote={addNote}
       />
-      <Main selectedNoteId={selectedNoteId} />
+      <Main selectedNoteId={selectedNoteId} updateNote={updateNote} />
     </div>
   );
 }
