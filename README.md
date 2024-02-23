@@ -1,30 +1,29 @@
-# React + TypeScript + Vite
+# 使用技術
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+### フロント
+* [React](https://ja.react.dev/) 18.2.0
+* [TypeScript](https://www.typescriptlang.org/) 18.2.0
 
-Currently, two official plugins are available:
+### ビルドツール
+* [Vite](https://ja.vitejs.dev/) 5.1.4
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
+# 環境構築
 ```
+# パッケージインストール
+$ npm install
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+# ローカル環境立ち上げ
+$ npm start
+```
+下記のローカル環境にアクセス出来ればOK  
+http://localhost:5173/  
+
+バックエンドは[こちら](https://github.com/ncdcdev/recruit-frontend)をローカルで起動してください。
+
+# 要件
+
+1. サイドバーに全ページを表示することができる。
+2. サイドバーで新たにページを作成することができる。
+   - メニューの下の「+」ボタンをクリックしてページを追加できる。
+3. 「-」ボタンをクリックすることで、ページを削除することができる。
+4. メインエリアのページはタイトルと本文で構成されており、それぞれ編集・保存できる。
