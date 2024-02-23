@@ -13,7 +13,7 @@ export type NoteType = {
   updatedAt: string;
 };
 
-function App() {
+const App = () => {
   const [notes, setNotes] = useState<NoteType[]>([]);
   const [selectedNoteId, setSelectedNoteId] = useState<number | null>(null);
 
@@ -124,6 +124,6 @@ function App() {
       <Main selectedNoteId={selectedNoteId} updateNote={updateNote} />
     </div>
   );
-}
+};
 
 export default App;
