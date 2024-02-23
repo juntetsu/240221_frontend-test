@@ -36,6 +36,7 @@ function App() {
     getNotes();
   }, []);
 
+  // 削除機能
   const deleteNote = async (id: number) => {
     // サーバーから記事を削除するAPIを呼び出す場合
     await axios.delete(`http://localhost:3000/content/${id}`);
@@ -54,6 +55,7 @@ function App() {
     }
   };
 
+  // 追加機能
   const addNote = async () => {
     const newNote = {
       title: "タイトル",
@@ -72,21 +74,27 @@ function App() {
     setSelectedNoteId(addedNote.id);
   };
 
-  // ノートの編集
+  // 編集機能
   const updateNote = async (id: number, updatedNote: NoteType) => {
-    await axios.put(`http://localhost:3000/content/${id}`, updatedNote);
+    const res = await axios.put(
+      `http://localhost:3000/content/${id}`,
+      updatedNote
+    );
+    const updatedNoteData = res.data;
 
-    const updatedNotes = notes.map((note) => {
-      if (note.id === id) {
-        return updatedNote;
-      }
-      return note;
-    });
+    // ①ノートが更新対象の場合、更新後のデータに置き換える
+    // ②ノートが更新対象でない場合、そのままのデータを使う
+    // ③最後にupdatedAtで降順にソート
+    // ④更新されたノートを選択状態にする
+    const updatedNotes = notes
+      .map((note) => (note.id === id ? updatedNoteData : note))
+      .sort(
+        (a, b) =>
+          new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime()
+      );
+
     setNotes(updatedNotes);
-
-    if (selectedNoteId === id) {
-      setSelectedNoteId(updatedNote.id);
-    }
+    setSelectedNoteId(updatedNoteData.id);
   };
 
   return (
