@@ -46,7 +46,11 @@ function App() {
 
     // 削除された記事が選択されていた場合、選択を解除または更新
     if (selectedNoteId === id) {
-      setSelectedNoteId(null);
+      if (updatedNotes.length > 0) {
+        setSelectedNoteId(updatedNotes[0].id);
+      } else {
+        setSelectedNoteId(null);
+      }
     }
   };
 
