@@ -17,6 +17,9 @@
 
 .article__header {
   width: 100%;
+}
+
+.article__header.flex {
   display: flex;
   align-items: center;
   gap: 20px;
@@ -28,6 +31,13 @@
   font-size: 24px;
   line-height: 1.666;
   font-weight: 700;
+}
+
+.article__title-input-wrapper {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 20px;
 }
 
 .article__title-input {
@@ -44,8 +54,23 @@
 }
 
 .article__body {
-  display: flex;
+  height: 0;
   flex: 1;
+  position: relative;
+}
+
+.article__body.error::after {
+  content: "本文を入力してください";
+  position: absolute;
+  bottom: -25px;
+  font-size: 12px;
+  color: red;
+}
+
+.article__body-inner {
+  height: 100%;
+  overflow-y: auto;
+  display: flex;
   gap: 20px;
   overflow-y: auto;
 }
@@ -97,4 +122,9 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.error-message {
+  color: red;
+  font-size: 12px;
 }

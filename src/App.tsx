@@ -3,7 +3,6 @@ import Sidebar from "./components/Sidebar";
 import Main from "./components/Main";
 import { useEffect, useState } from "react";
 import axios from "axios";
-// import { v4 as uuidv4 } from "uuid";
 
 export type NoteType = {
   id: number;

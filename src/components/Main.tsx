@@ -15,6 +15,8 @@ const Main: React.FC<MainProps> = ({ selectedNoteId, updateNote }) => {
   const [bodyEditMode, setBodyEditMode] = useState<boolean>(false);
   const [editedTitle, setEditedTitle] = useState<string>("");
   const [editedBody, setEditedBody] = useState<string>("");
+  const [titleError, setTitleError] = useState<boolean>(false);
+  const [bodyError, setBodyError] = useState<boolean>(false);
 
   useEffect(() => {
     const fetchNote = async () => {
@@ -61,6 +63,18 @@ const Main: React.FC<MainProps> = ({ selectedNoteId, updateNote }) => {
       setNote(updatedNote);
       setTitleEditMode(false);
       setBodyEditMode(false);
+      setTitleError(false);
+      setBodyError(false);
+    }
+
+    // タイトルが空の場合
+    if (!editedTitle) {
+      setTitleError(true);
+    }
+
+    // 本文が空の場合
+    if (!editedBody) {
+      setBodyError(true);
     }
   };
 
@@ -70,31 +84,38 @@ const Main: React.FC<MainProps> = ({ selectedNoteId, updateNote }) => {
         <div className="no-notes">ノートはありません</div>
       ) : (
         <article className="article">
-          <div className="article__header">
+          <div className={`article__header ${titleEditMode ? "" : "flex"}`}>
             {titleEditMode ? (
               <>
-                <input
-                  type="text"
-                  className="article__title-input"
-                  value={editedTitle}
-                  onChange={(e) => setEditedTitle(e.target.value)}
-                />
-                <div className="article__btn-wrapper">
-                  <button
-                    className="article__btn cancel-btn"
-                    onClick={handleCancel}
-                  >
-                    <span></span>
-                    Cancel
-                  </button>
-                  <button
-                    className="article__btn save-btn"
-                    onClick={handleSave}
-                  >
-                    <img src="../public/save.svg" alt="" />
-                    Save
-                  </button>
+                <div className="article__title-input-wrapper">
+                  <input
+                    type="text"
+                    className="article__title-input"
+                    value={editedTitle}
+                    onChange={(e) => setEditedTitle(e.target.value)}
+                  />
+                  <div className="article__btn-wrapper">
+                    <button
+                      className="article__btn cancel-btn"
+                      onClick={handleCancel}
+                    >
+                      <span></span>
+                      Cancel
+                    </button>
+                    <button
+                      className="article__btn save-btn"
+                      onClick={handleSave}
+                    >
+                      <img src="../public/save.svg" alt="" />
+                      Save
+                    </button>
+                  </div>
                 </div>
+                {titleError && (
+                  <div className="error-message">
+                    タイトルを入力してください。
+                  </div>
+                )}
               </>
             ) : (
               <>
@@ -106,42 +127,44 @@ const Main: React.FC<MainProps> = ({ selectedNoteId, updateNote }) => {
               </>
             )}
           </div>
-          <div className="article__body">
-            {bodyEditMode ? (
-              <>
-                <textarea
-                  className="article__body-input"
-                  value={editedBody}
-                  onChange={(e) => setEditedBody(e.target.value)}
-                />
-                <div className="article__btn-wrapper">
-                  <button
-                    className="article__btn cancel-btn"
-                    onClick={handleCancel}
-                  >
-                    <span></span>
-                    Cancel
+          <div className={`article__body ${bodyError ? "error" : ""}`}>
+            <div className="article__body-inner">
+              {bodyEditMode ? (
+                <>
+                  <textarea
+                    className="article__body-input"
+                    value={editedBody}
+                    onChange={(e) => setEditedBody(e.target.value)}
+                  />
+                  <div className="article__btn-wrapper">
+                    <button
+                      className="article__btn cancel-btn"
+                      onClick={handleCancel}
+                    >
+                      <span></span>
+                      Cancel
+                    </button>
+                    <button
+                      className="article__btn save-btn"
+                      onClick={handleSave}
+                    >
+                      <img src="../public/save.svg" alt="" />
+                      Save
+                    </button>
+                  </div>
+                </>
+              ) : (
+                <>
+                  <div className="article__content">
+                    <p className="article__text">{note ? note.body : ""}</p>
+                  </div>
+                  <button className="article__btn btn" onClick={handleBodyEdit}>
+                    <img src="../public/edit.svg" alt="" />
+                    Edit
                   </button>
-                  <button
-                    className="article__btn save-btn"
-                    onClick={handleSave}
-                  >
-                    <img src="../public/save.svg" alt="" />
-                    Save
-                  </button>
-                </div>
-              </>
-            ) : (
-              <>
-                <div className="article__content">
-                  <p className="article__text">{note ? note.body : ""}</p>
-                </div>
-                <button className="article__btn btn" onClick={handleBodyEdit}>
-                  <img src="../public/edit.svg" alt="" />
-                  Edit
-                </button>
-              </>
-            )}
+                </>
+              )}
+            </div>
           </div>
         </article>
       )}
