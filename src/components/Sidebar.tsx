@@ -1,5 +1,5 @@
 import React from "react";
-import "./Sidebar.css";
+import "../css/Sidebar.css";
 import { NoteType } from "../App";
 import { useState, useEffect } from "react";
 

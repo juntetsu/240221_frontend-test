@@ -1,5 +1,5 @@
 import React from "react";
-import "./Main.css";
+import "../css/Main.css";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { NoteType } from "../App";
