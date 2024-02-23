@@ -28,6 +28,8 @@
 
 .sidebar__list {
   margin-top: 20px;
+  height: 100%;
+  overflow-y: auto;
 }
 
 .sidebar__item {

@@ -2,6 +2,7 @@
   border-left: 1px solid var(--bg-light-blue);
   padding: 40px 40px 0 40px;
   height: calc(100vh - 60px);
+  flex: 1;
 }
 
 .article {
@@ -22,7 +23,7 @@
 }
 
 .article__title {
-  width: 910px;
+  width: 84.259%;
   padding: 0 30px;
   font-size: 24px;
   line-height: 1.666;
@@ -30,7 +31,7 @@
 }
 
 .article__title-input {
-  width: 910px;
+  width: 84.259%;
   height: 40px;
   padding: 0 30px;
   font-size: 24px;
@@ -53,7 +54,7 @@
   padding: 26px 30px;
   overflow-y: auto;
   border-radius: 8px;
-  width: 910px;
+  width: 84.259%;
   border: none;
   font-size: 16px;
   line-height: 1.5;
@@ -67,7 +68,7 @@
   padding: 26px 30px;
   overflow-y: auto;
   border-radius: 8px;
-  width: 910px;
+  width: 84.259%;
 }
 
 .article__text {
