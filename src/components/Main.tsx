@@ -66,75 +66,85 @@ const Main: React.FC<MainProps> = ({ selectedNoteId, updateNote }) => {
 
   return (
     <main className="main">
-      <article className="article">
-        <div className="article__header">
-          {titleEditMode ? (
-            <>
-              <input
-                type="text"
-                className="article__title-input"
-                value={editedTitle}
-                onChange={(e) => setEditedTitle(e.target.value)}
-              />
-              <div className="article__btn-wrapper">
-                <button
-                  className="article__btn cancel-btn"
-                  onClick={handleCancel}
-                >
-                  <span></span>
-                  Cancel
+      {selectedNoteId === null ? (
+        <div className="no-notes">ノートはありません</div>
+      ) : (
+        <article className="article">
+          <div className="article__header">
+            {titleEditMode ? (
+              <>
+                <input
+                  type="text"
+                  className="article__title-input"
+                  value={editedTitle}
+                  onChange={(e) => setEditedTitle(e.target.value)}
+                />
+                <div className="article__btn-wrapper">
+                  <button
+                    className="article__btn cancel-btn"
+                    onClick={handleCancel}
+                  >
+                    <span></span>
+                    Cancel
+                  </button>
+                  <button
+                    className="article__btn save-btn"
+                    onClick={handleSave}
+                  >
+                    <img src="../public/save.svg" alt="" />
+                    Save
+                  </button>
+                </div>
+              </>
+            ) : (
+              <>
+                <h1 className="article__title">{note ? note.title : ""}</h1>
+                <button className="article__btn btn" onClick={handleTitleEdit}>
+                  <img src="../public/edit.svg" alt="" />
+                  Edit
                 </button>
-                <button className="article__btn save-btn" onClick={handleSave}>
-                  <img src="../public/save.svg" alt="" />
-                  Save
+              </>
+            )}
+          </div>
+          <div className="article__body">
+            {bodyEditMode ? (
+              <>
+                <textarea
+                  className="article__body-input"
+                  value={editedBody}
+                  onChange={(e) => setEditedBody(e.target.value)}
+                />
+                <div className="article__btn-wrapper">
+                  <button
+                    className="article__btn cancel-btn"
+                    onClick={handleCancel}
+                  >
+                    <span></span>
+                    Cancel
+                  </button>
+                  <button
+                    className="article__btn save-btn"
+                    onClick={handleSave}
+                  >
+                    <img src="../public/save.svg" alt="" />
+                    Save
+                  </button>
+                </div>
+              </>
+            ) : (
+              <>
+                <div className="article__content">
+                  <p className="article__text">{note ? note.body : ""}</p>
+                </div>
+                <button className="article__btn btn" onClick={handleBodyEdit}>
+                  <img src="../public/edit.svg" alt="" />
+                  Edit
                 </button>
-              </div>
-            </>
-          ) : (
-            <>
-              <h1 className="article__title">{note ? note.title : ""}</h1>
-              <button className="article__btn btn" onClick={handleTitleEdit}>
-                <img src="../public/edit.svg" alt="" />
-                Edit
-              </button>
-            </>
-          )}
-        </div>
-        <div className="article__body">
-          {bodyEditMode ? (
-            <>
-              <textarea
-                className="article__body-input"
-                value={editedBody}
-                onChange={(e) => setEditedBody(e.target.value)}
-              />
-              <div className="article__btn-wrapper">
-                <button
-                  className="article__btn cancel-btn"
-                  onClick={handleCancel}
-                >
-                  <span></span>
-                  Cancel
-                </button>
-                <button className="article__btn save-btn" onClick={handleSave}>
-                  <img src="../public/save.svg" alt="" />
-                  Save
-                </button>
-              </div>
-            </>
-          ) : (
-            <>
-              <div className="article__content">
-                <p className="article__text">{note ? note.body : ""}</p>
-              </div>
-              <button className="article__btn btn" onClick={handleBodyEdit}>
-                <img src="../public/edit.svg" alt="" />
-                Edit
-              </button>
-            </>
-          )}
-        </div>
-      </article>
+              </>
+            )}
+          </div>
+        </article>
+      )}
       <footer className="footer">
         <p className="footer__copy">Copyright © 2021 Sample</p>
         <p className="footer__company">運営会社</p>
