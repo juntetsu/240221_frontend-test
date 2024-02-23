@@ -48,7 +48,7 @@ const Sidebar: React.FC<SidebarProps> = ({
     <aside className="sidebar">
       <div className="sidebar__inner">
         <h1 className="sidebar__logo">
-          <img src="./public/logo.svg" alt="" />
+          <img src="./logo.svg" alt="" />
           ServiceName
         </h1>
         <ul className="sidebar__list">
@@ -66,7 +66,7 @@ const Sidebar: React.FC<SidebarProps> = ({
                   className="sidebar__item-delete-btn"
                   onClick={(e) => handleDelete(e, note.id)}
                 >
-                  <img src="../public/delete.svg" alt="" />
+                  <img src="./delete.svg" alt="" />
                 </button>
               )}
             </li>
@@ -79,7 +79,7 @@ const Sidebar: React.FC<SidebarProps> = ({
             className="sidebar__btn btn add sidebar__add-btn"
             onClick={addNote}
           >
-            <img src="../public/+.svg" alt="" />
+            <img src="./+.svg" alt="" />
             New Page
           </button>
         )}
@@ -88,7 +88,7 @@ const Sidebar: React.FC<SidebarProps> = ({
             className="sidebar__btn btn done sidebar__add-btn"
             onClick={toggleEditMode}
           >
-            <img src="../public/done.svg" alt="" />
+            <img src="./done.svg" alt="" />
             Done
           </button>
         ) : (
@@ -96,7 +96,7 @@ const Sidebar: React.FC<SidebarProps> = ({
             className="sidebar__btn btn sidebar__edit-btn"
             onClick={toggleEditMode}
           >
-            <img src="../public/edit.svg" alt="" />
+            <img src="./edit.svg" alt="" />
             Edit
           </button>
         )}

@@ -106,7 +106,7 @@ const Main: React.FC<MainProps> = ({ selectedNoteId, updateNote }) => {
                       className="article__btn save-btn"
                       onClick={handleSave}
                     >
-                      <img src="../public/save.svg" alt="" />
+                      <img src="./save.svg" alt="" />
                       Save
                     </button>
                   </div>
@@ -121,7 +121,7 @@ const Main: React.FC<MainProps> = ({ selectedNoteId, updateNote }) => {
               <>
                 <h1 className="article__title">{note ? note.title : ""}</h1>
                 <button className="article__btn btn" onClick={handleTitleEdit}>
-                  <img src="../public/edit.svg" alt="" />
+                  <img src="./edit.svg" alt="" />
                   Edit
                 </button>
               </>
@@ -148,7 +148,7 @@ const Main: React.FC<MainProps> = ({ selectedNoteId, updateNote }) => {
                       className="article__btn save-btn"
                       onClick={handleSave}
                     >
-                      <img src="../public/save.svg" alt="" />
+                      <img src="./save.svg" alt="" />
                       Save
                     </button>
                   </div>
@@ -159,7 +159,7 @@ const Main: React.FC<MainProps> = ({ selectedNoteId, updateNote }) => {
                     <p className="article__text">{note ? note.body : ""}</p>
                   </div>
                   <button className="article__btn btn" onClick={handleBodyEdit}>
-                    <img src="../public/edit.svg" alt="" />
+                    <img src="./edit.svg" alt="" />
                     Edit
                   </button>
                 </>
